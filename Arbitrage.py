@@ -91,4 +91,6 @@ for x in range(1, 10):
             summary(path, m)
             exit(0)
 
+# path: tokenB->tokenA->tokenD->tokenC->tokenB, tokenB balance=20.129888944077447
+
 # print(calculate(('tokenB', 'tokenA', 'tokenD', 'tokenB'), 5))
