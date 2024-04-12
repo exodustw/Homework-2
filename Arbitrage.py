@@ -36,18 +36,6 @@ class Pool:
         else:
             assert(0)
 
-
-
-# money = 5
-# money, _ = pools[0].swap(0,money)
-# print(money)
-# _, money = pools[2].swap(money,0)
-# print(money)
-# money, _ = pools[5].swap(0,money)
-# print(money)
-
-# print(pools)
-
 def calculate(path, money):
     pools = {}
     for name, value in liquidity.items():
@@ -67,30 +55,31 @@ def calculate(path, money):
     return money
 
 def summary(path, money):
-    print('path: ', end='')
+    out = 'path: '
     for i, p in enumerate(path):
        if(i != 0):
-           print('->', end='')
-       print(p, end='')
-    
-    print(f', tokenB balance={money}')
+           out += '->'
+       out += f'{p}'
+
+    out += f', tokenB balance={money}'
+    return out
 
 tokens = ['tokenA', 'tokenB', 'tokenC', 'tokenD', 'tokenE']
 money = 5
 
 from itertools import permutations
 
-for x in range(1, 10):
+max = 0
+answer = ''
+for x in range(1, 5):
     for p in permutations(tokens, x):
         path = ('tokenB',)+p+('tokenB',)
         # print(f"{path = }")
         
         m = calculate(path, 5)
             
-        if m > 20:
-            summary(path, m)
-            exit(0)
+        if m > max:
+            max = m
+            answer = summary(path, m)
 
-# path: tokenB->tokenA->tokenD->tokenC->tokenB, tokenB balance=20.129888944077447
-
-# print(calculate(('tokenB', 'tokenA', 'tokenD', 'tokenB'), 5))
+print(answer)

@@ -8,14 +8,14 @@ Provide your profitable path, the amountIn, amountOut value for each swap, and y
 Profitable path: tokenB->tokenA->tokenD->tokenC->tokenB
 amountIn: 5 (ether)
 amountOut: 20.12 (ether)
-Final reward: 20.12 (ether)
+Final reward: 20.129888944077446732 (ether)
 
-因為我在實際交易時，在 `swapTokensForExactTokens()` 中將整個 path (`tokenB->tokenA->tokenD->tokenC->tokenB`) 傳入，因此只有一組 swap 的 `amountIn`/`amountOut`。
+因為我在實際交易時，在 `swapExactTokensForTokens()` 中將整個 path (`tokenB->tokenA->tokenD->tokenC->tokenB`) 傳入，因此只有一組 swap 的 `amountIn`/`amountOut`。
 
 ## Problem 2
 What is slippage in AMM, and how does Uniswap V2 address this issue? Please illustrate with a function as an example.
 
-Slippage (滑價) 是指 AMM 中交易的預期價格與實際價格之間的差異，通常是由市場波動所造成。在 Uniswap V2 中，我們可以透過 `swapExactTokensForTokens()` 中的 `amountOutMin` 或 `swapTokensForExactTokens()` 中的 `amountInMax` 來設定對於滑價的容忍程度，在一定程度上避免了滑價造成的問題。
+Slippage (滑價) 是指 AMM 中交易的預期價格與實際價格之間的差異，通常是由市場波動所造成。在 Uniswap V2 中，我們可以透過 `swapExactTokensForTokens()` 中的 `amountOutMin` (對於 `amountIn` 個 token0 至少要換多少 token1 出來) 或 `swapTokensForExactTokens()` 中的 `amountInMax` (對於要換 `amountOut` 個 token1 出來最多願意花多少 token0) 來設定對於滑價的容忍程度，在一定程度上避免了滑價造成的問題。
 
 ## Problem 3
 Please examine the mint function in the UniswapV2Pair contract. Upon initial liquidity minting, a minimum liquidity is subtracted. What is the rationale behind this design?

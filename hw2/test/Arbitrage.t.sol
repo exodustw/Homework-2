@@ -90,8 +90,8 @@ contract Arbitrage is Test {
         path[3] = address(tokenC);
         path[4] = address(tokenB);
 
-        router.swapTokensForExactTokens(
-            amountOut, amountIn, path, arbitrager, block.timestamp
+        router.swapExactTokensForTokens(
+            amountIn, amountOut, path, arbitrager, block.timestamp
         );
         /**
          * Please add your solution above
